@@ -1,14 +1,16 @@
 package com.gymer.gymer_rest_api.entity;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Account {
 
     @Id
@@ -36,17 +38,8 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
-    public Account(String firstName, String lastName, String email,
-                   String password, String phoneNumber, Integer age,
-                   Integer height, Integer weight, AccountType accountType) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.age = age;
-        this.height = height;
-        this.weight = weight;
-        this.accountType = accountType;
-    }
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    private Calendar calendar;
+
 }
