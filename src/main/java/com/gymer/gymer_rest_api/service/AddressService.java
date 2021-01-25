@@ -40,7 +40,7 @@ public class AddressService implements ICrudService<Address, Integer> {
             address.setCity(object.getCity());
             address.setStreet(object.getStreet());
             address.setLocalNumber(object.getLocalNumber());
-            address.setZipcode(object.getZipcode());
+            address.setZipCode(object.getZipCode());
             add(address);
         }
     }

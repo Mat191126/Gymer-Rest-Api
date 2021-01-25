@@ -18,13 +18,13 @@ public class Address {
     private Integer id;
     private String city;
     private String street;
-    private int localNumber;
-    private String zipcode;
+    private String localNumber;
+    private String zipCode;
 
-    public Address(String city, String street, int localNumber, String zipcode) {
+    public Address(String city, String street, String localNumber, String zipcode) {
         this.city = city;
         this.street = street;
         this.localNumber = localNumber;
-        this.zipcode = zipcode;
+        this.zipCode = zipcode;
     }
 }
