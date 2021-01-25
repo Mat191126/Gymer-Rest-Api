@@ -8,9 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@NoArgsConstructor
 @Data
 @Entity
+@NoArgsConstructor
 public class Address {
 
     @Id

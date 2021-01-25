@@ -1,5 +1,7 @@
 package com.gymer.gymer_rest_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,14 +15,26 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotNull
     private String firstName;
+
+    @NotNull
     private String lastName;
+
+    @NotNull
     private String email;
+
+    @NotNull
+    @JsonIgnore
     private String password;
+
     private String phoneNumber;
     private Integer age;
     private Integer height;
     private Integer weight;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
 

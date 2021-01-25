@@ -20,9 +20,9 @@ public class Slot {
 	@ManyToOne
 	private Address address;
 	private boolean occupied;
-	private Callendar calendar;
+	private Calendar calendar;
 
-	public Slot(Time startTime, Time endTime, Address address, boolean occupied, Callendar calendar) {
+	public Slot(Time startTime, Time endTime, Address address, boolean occupied, Calendar calendar) {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.address = address;

@@ -6,10 +6,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.List;
 
 @Data
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
 public class Gym {
 
     @Id
@@ -36,9 +37,15 @@ public class Gym {
     private Calendar calendar;
 
     @OneToMany
-    private Iterable<Account> employees;
+    private List<Account> employees;
 
-    public Gym(String name, String description, Time openTime, Time closeTime, Address address, Calendar calendar, Iterable<Account> employees) {
+    public Gym(String name,
+               String description,
+               Time openTime,
+               Time closeTime,
+               Address address,
+               Calendar calendar,
+               List<Account> employees) {
         this.name = name;
         this.description = description;
         this.openTime = openTime;
