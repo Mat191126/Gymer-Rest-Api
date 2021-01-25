@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/gym")
+@RequestMapping("/api/gyms")
 public class GymController {
 
     private final GymService gymService;
