@@ -7,31 +7,38 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.List;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Slot {
+public class Gym {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
-    private Time startTime;
+    private String name;
+
+    private String description;
 
     @NotNull
-    private Time endTime;
+    private Time openTime;
+
+    @NotNull
+    private Time closeTime;
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     @NotNull
-    private boolean occupied;
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Calendar calendar;
+
+    @OneToMany
+    private List<Account> employees;
 
 }

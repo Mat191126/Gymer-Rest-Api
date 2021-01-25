@@ -1,37 +1,29 @@
 package com.gymer.gymer_rest_api.entity;
 
+import com.gymer.gymer_rest_api.entity.enumerated.CalendarType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.util.List;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Slot {
+public class Calendar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    private Time startTime;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Slot> slots;
 
     @NotNull
-    private Time endTime;
-
-    @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    private Address address;
-
-    @NotNull
-    private boolean occupied;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Calendar calendar;
+    @Enumerated(EnumType.STRING)
+    private CalendarType calendarType;
 
 }

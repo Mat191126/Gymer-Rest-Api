@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GymerRestApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GymerRestApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GymerRestApiApplication.class, args);
+    }
 
 }
