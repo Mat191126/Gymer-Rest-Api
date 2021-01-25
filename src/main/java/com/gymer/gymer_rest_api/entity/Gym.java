@@ -1,6 +1,7 @@
 package com.gymer.gymer_rest_api.entity;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Gym {
 
     @Id
@@ -38,21 +40,5 @@ public class Gym {
 
     @OneToMany
     private List<Account> employees;
-
-    public Gym(String name,
-               String description,
-               Time openTime,
-               Time closeTime,
-               Address address,
-               Calendar calendar,
-               List<Account> employees) {
-        this.name = name;
-        this.description = description;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
-        this.address = address;
-        this.calendar = calendar;
-        this.employees = employees;
-    }
 
 }

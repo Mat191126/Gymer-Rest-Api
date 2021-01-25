@@ -1,32 +1,37 @@
 package com.gymer.gymer_rest_api.entity;
 
+import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Time;
 
-@NoArgsConstructor
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Slot {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private Time startTime;
-	private Time endTime;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@ManyToOne
-	private Address address;
-	private boolean occupied;
-	private Calendar calendar;
+    @NotNull
+    private Time startTime;
 
-	public Slot(Time startTime, Time endTime, Address address, boolean occupied, Calendar calendar) {
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.address = address;
-		this.occupied = occupied;
-		this.calendar = calendar;
-	}
+    @NotNull
+    private Time endTime;
+
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+
+    @NotNull
+    private boolean occupied;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Calendar calendar;
+
 }
