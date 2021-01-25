@@ -1,5 +1,6 @@
 package com.gymer.gymer_rest_api.entity;
 
+import com.gymer.gymer_rest_api.entity.enumerated.CalendarType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;

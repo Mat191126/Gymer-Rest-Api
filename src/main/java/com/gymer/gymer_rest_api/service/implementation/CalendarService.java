@@ -1,7 +1,8 @@
-package com.gymer.gymer_rest_api.service;
+package com.gymer.gymer_rest_api.service.implementation;
 
 import com.gymer.gymer_rest_api.entity.Calendar;
 import com.gymer.gymer_rest_api.repository.CalendarRepository;
+import com.gymer.gymer_rest_api.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

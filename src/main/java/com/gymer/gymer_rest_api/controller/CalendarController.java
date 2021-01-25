@@ -1,7 +1,7 @@
 package com.gymer.gymer_rest_api.controller;
 
 import com.gymer.gymer_rest_api.entity.Calendar;
-import com.gymer.gymer_rest_api.service.CalendarService;
+import com.gymer.gymer_rest_api.service.implementation.CalendarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

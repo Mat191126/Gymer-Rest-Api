@@ -1,7 +1,7 @@
 package com.gymer.gymer_rest_api.controller;
 
 import com.gymer.gymer_rest_api.entity.Slot;
-import com.gymer.gymer_rest_api.service.SlotService;
+import com.gymer.gymer_rest_api.service.implementation.SlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

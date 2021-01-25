@@ -1,7 +1,7 @@
 package com.gymer.gymer_rest_api.controller;
 
 import com.gymer.gymer_rest_api.entity.Account;
-import com.gymer.gymer_rest_api.service.AccountService;
+import com.gymer.gymer_rest_api.service.implementation.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +36,5 @@ public class AccountController {
         account.setId(id);
         accountService.update(account);
     }
-    
+
 }

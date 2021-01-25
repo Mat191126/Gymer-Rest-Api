@@ -1,7 +1,7 @@
 package com.gymer.gymer_rest_api.controller;
 
 import com.gymer.gymer_rest_api.entity.Address;
-import com.gymer.gymer_rest_api.service.AddressService;
+import com.gymer.gymer_rest_api.service.implementation.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
