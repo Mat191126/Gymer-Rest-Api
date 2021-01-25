@@ -46,7 +46,9 @@ public class AccountService implements ICrudService<Account, Integer> {
             account.setHeight(object.getHeight());
             account.setWeight(object.getWeight());
             account.setAccountType(object.getAccountType());
+            account.setCalendar(object.getCalendar());
             add(account);
         }
     }
+
 }
