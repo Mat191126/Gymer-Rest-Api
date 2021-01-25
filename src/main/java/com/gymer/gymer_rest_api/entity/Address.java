@@ -27,4 +27,5 @@ public class Address {
         this.localNumber = localNumber;
         this.zipCode = zipcode;
     }
+
 }
