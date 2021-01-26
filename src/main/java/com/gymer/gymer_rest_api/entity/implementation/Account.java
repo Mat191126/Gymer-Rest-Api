@@ -46,6 +46,7 @@ public class Account implements BaseEntityBehaviour<Integer> {
     private Calendar calendar;
 
     @JsonIgnore
+    @Column(columnDefinition = "boolean default true")
     private boolean active = true;
 
 }

@@ -38,6 +38,7 @@ public class Slot implements BaseEntityBehaviour<Integer> {
     private boolean occupied;
 
     @JsonIgnore
+    @Column(columnDefinition = "boolean default true")
     private boolean active = true;
 
 }

@@ -44,6 +44,7 @@ public class Gym implements BaseEntityBehaviour<Integer> {
     private List<Account> employees;
 
     @JsonIgnore
+    @Column(columnDefinition = "boolean default true")
     private boolean active = true;
 
 }
