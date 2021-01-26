@@ -1,6 +1,6 @@
 package com.gymer.gymer_rest_api.entity.implementation;
 
-import com.gymer.gymer_rest_api.entity.IdObtainable;
+import com.gymer.gymer_rest_api.entity.BaseEntityBehaviour;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.sql.Time;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Slot implements IdObtainable<Integer> {
+public class Slot implements BaseEntityBehaviour<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +35,8 @@ public class Slot implements IdObtainable<Integer> {
 
     @NotNull
     private boolean occupied;
+
+    @NotNull
+    private boolean active;
 
 }

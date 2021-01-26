@@ -1,6 +1,6 @@
 package com.gymer.gymer_rest_api.entity.implementation;
 
-import com.gymer.gymer_rest_api.entity.IdObtainable;
+import com.gymer.gymer_rest_api.entity.BaseEntityBehaviour;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Gym implements IdObtainable<Integer> {
+public class Gym implements BaseEntityBehaviour<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +41,8 @@ public class Gym implements IdObtainable<Integer> {
 
     @OneToMany
     private List<Account> employees;
+
+    @NotNull
+    private boolean active;
 
 }
