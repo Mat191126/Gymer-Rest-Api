@@ -1,5 +1,6 @@
-package com.gymer.gymer_rest_api.entity;
+package com.gymer.gymer_rest_api.entity.implementation;
 
+import com.gymer.gymer_rest_api.entity.IdObtainable;
 import com.gymer.gymer_rest_api.entity.enumerated.AccountType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account {
+public class Account implements IdObtainable<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

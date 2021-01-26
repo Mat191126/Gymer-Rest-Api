@@ -1,5 +1,6 @@
-package com.gymer.gymer_rest_api.entity;
+package com.gymer.gymer_rest_api.entity.implementation;
 
+import com.gymer.gymer_rest_api.entity.IdObtainable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
+public class Address implements IdObtainable<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

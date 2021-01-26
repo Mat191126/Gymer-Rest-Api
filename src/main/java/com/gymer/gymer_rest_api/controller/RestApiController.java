@@ -1,15 +1,16 @@
 package com.gymer.gymer_rest_api.controller;
 
-import com.gymer.gymer_rest_api.service.CrudService;
+import com.gymer.gymer_rest_api.entity.IdObtainable;
+import com.gymer.gymer_rest_api.service.CrudBehaviour;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 public abstract class RestApiController<T, K> {
 
-    private final CrudService<T, K> service;
+    private final CrudBehaviour<T, K> service;
 
-    public RestApiController(CrudService<T, K> service) {
+    public RestApiController(CrudBehaviour<T, K> service) {
         this.service = service;
     }
 
@@ -39,9 +40,10 @@ public abstract class RestApiController<T, K> {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     protected final void updateAccount(@RequestBody T object, @PathVariable K id) {
-//        if (!entity.getId().equals(id)) {
-//            throw new ResponseStatusException(HttpStatus.CONFLICT);
-//        }
+        IdObtainable<K> idObtainable = (IdObtainable<K>) object;
+        if (!idObtainable.getId().equals(id)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
+        }
         if (!service.update(object)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

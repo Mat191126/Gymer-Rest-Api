@@ -1,47 +1,30 @@
 package com.gymer.gymer_rest_api.service.implementation;
 
-import com.gymer.gymer_rest_api.entity.Calendar;
-import com.gymer.gymer_rest_api.repository.CalendarRepository;
+import com.gymer.gymer_rest_api.entity.implementation.Address;
+import com.gymer.gymer_rest_api.entity.implementation.Calendar;
 import com.gymer.gymer_rest_api.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class CalendarService implements CrudService<Calendar, Integer> {
-
-    private final CalendarRepository calendarRepository;
+public class CalendarService extends CrudService<Calendar, Integer> {
 
     @Autowired
-    public CalendarService(CalendarRepository calendarRepository) {
-        this.calendarRepository = calendarRepository;
+    public CalendarService(CrudRepository<Calendar, Integer> repository) {
+        super(repository);
     }
 
     @Override
-    public Iterable<Calendar> getAll() {
-        return calendarRepository.findAll();
-    }
-
-    @Override
-    public Optional<Calendar> get(Integer id) {
-        return calendarRepository.findById(id);
-    }
-
-    @Override
-    public boolean add(Calendar object) {
-        calendarRepository.save(object);
-        return calendarRepository.existsById(object.getId());
-    }
-
-    @Override
-    public boolean update(Calendar object) {
-        Optional<Calendar> oldCalendar = get(object.getId());
-        if (oldCalendar.isPresent()) {
-            Calendar calendar = oldCalendar.get();
-            calendar.setSlots(object.getSlots());
-            calendar.setCalendarType(object.getCalendarType());
-            add(calendar);
+    public boolean update(Calendar newCalendar) {
+        Optional<Calendar> oldCalendarOptional = get(newCalendar.getId());
+        if (oldCalendarOptional.isPresent()) {
+            Calendar oldCalendar = oldCalendarOptional.get();
+            oldCalendar.setSlots(newCalendar.getSlots());
+            oldCalendar.setCalendarType(newCalendar.getCalendarType());
+            add(oldCalendar);
             return true;
         }
         return false;

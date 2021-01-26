@@ -1,15 +1,33 @@
 package com.gymer.gymer_rest_api.service;
 
+import com.gymer.gymer_rest_api.entity.IdObtainable;
+import org.springframework.data.repository.CrudRepository;
+
 import java.util.Optional;
 
-public interface CrudService<T, V> {
+public abstract class CrudService<T, K> implements CrudBehaviour<T, K> {
 
-    Iterable<T> getAll();
+    protected final CrudRepository<T, K> repository;
 
-    Optional<T> get(V id);
+    public CrudService(CrudRepository<T, K> repository) {
+        this.repository = repository;
+    }
 
-    boolean add(T object);
+    @Override
+    public final Iterable<T> getAll() {
+        return repository.findAll();
+    }
 
-    boolean update(T object);
+    @Override
+    public final Optional<T> get(K id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public final boolean add(T object) {
+        repository.save(object);
+        IdObtainable<K> idObtainable = (IdObtainable<K>) object;
+        return repository.existsById(idObtainable.getId());
+    }
 
 }

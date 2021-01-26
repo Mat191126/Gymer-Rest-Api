@@ -1,52 +1,32 @@
 package com.gymer.gymer_rest_api.service.implementation;
 
-import com.gymer.gymer_rest_api.entity.Gym;
-import com.gymer.gymer_rest_api.repository.GymRepository;
+import com.gymer.gymer_rest_api.entity.implementation.Gym;
 import com.gymer.gymer_rest_api.service.CrudService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class GymService implements CrudService<Gym, Integer> {
+public class GymService extends CrudService<Gym, Integer> {
 
-    private final GymRepository gymRepository;
-
-    @Autowired
-    public GymService(GymRepository gymRepository) {
-        this.gymRepository = gymRepository;
+    public GymService(CrudRepository<Gym, Integer> repository) {
+        super(repository);
     }
 
     @Override
-    public Iterable<Gym> getAll() {
-        return gymRepository.findAll();
-    }
-
-    @Override
-    public Optional<Gym> get(Integer id) {
-        return gymRepository.findById(id);
-    }
-
-    @Override
-    public boolean add(Gym object) {
-        gymRepository.save(object);
-        return gymRepository.existsById(object.getId());
-    }
-
-    @Override
-    public boolean update(Gym object) {
-        Optional<Gym> gymDetailsOptional = get(object.getId());
-        if (gymDetailsOptional.isPresent()) {
-            Gym gym = gymDetailsOptional.get();
-            gym.setName(object.getName());
-            gym.setDescription(object.getDescription());
-            gym.setOpenTime(object.getOpenTime());
-            gym.setCloseTime(object.getCloseTime());
-            gym.setAddress(object.getAddress());
-            gym.setCalendar(object.getCalendar());
-            gym.setEmployees(object.getEmployees());
-            add(gym);
+    public boolean update(Gym newGym) {
+        Optional<Gym> oldGymOptional = get(newGym.getId());
+        if (oldGymOptional.isPresent()) {
+            Gym oldGym = oldGymOptional.get();
+            oldGym.setName(newGym.getName());
+            oldGym.setDescription(newGym.getDescription());
+            oldGym.setOpenTime(newGym.getOpenTime());
+            oldGym.setCloseTime(newGym.getCloseTime());
+            oldGym.setAddress(newGym.getAddress());
+            oldGym.setCalendar(newGym.getCalendar());
+            oldGym.setEmployees(newGym.getEmployees());
+            add(oldGym);
             return true;
         }
         return false;

@@ -1,49 +1,29 @@
 package com.gymer.gymer_rest_api.service.implementation;
 
-import com.gymer.gymer_rest_api.entity.Slot;
-import com.gymer.gymer_rest_api.repository.SlotRepository;
+import com.gymer.gymer_rest_api.entity.implementation.Slot;
 import com.gymer.gymer_rest_api.service.CrudService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class SlotService implements CrudService<Slot, Integer> {
+public class SlotService extends CrudService<Slot, Integer> {
 
-    private final SlotRepository slotRepository;
-
-    @Autowired
-    public SlotService(SlotRepository slotRepository) {
-        this.slotRepository = slotRepository;
+    public SlotService(CrudRepository<Slot, Integer> repository) {
+        super(repository);
     }
 
     @Override
-    public Iterable<Slot> getAll() {
-        return slotRepository.findAll();
-    }
-
-    @Override
-    public Optional<Slot> get(Integer id) {
-        return slotRepository.findById(id);
-    }
-
-    @Override
-    public boolean add(Slot object) {
-        slotRepository.save(object);
-        return slotRepository.existsById(object.getId());
-    }
-
-    @Override
-    public boolean update(Slot object) {
-        Optional<Slot> oldSlot = get(object.getId());
-        if (oldSlot.isPresent()) {
-            Slot slot = oldSlot.get();
-            slot.setAddress(object.getAddress());
-            slot.setEndTime(object.getEndTime());
-            slot.setStartTime(object.getStartTime());
-            slot.setOccupied(object.isOccupied());
-            add(slot);
+    public boolean update(Slot newSlot) {
+        Optional<Slot> oldSlotOptional = get(newSlot.getId());
+        if (oldSlotOptional.isPresent()) {
+            Slot oldSlot = oldSlotOptional.get();
+            oldSlot.setAddress(newSlot.getAddress());
+            oldSlot.setEndTime(newSlot.getEndTime());
+            oldSlot.setStartTime(newSlot.getStartTime());
+            oldSlot.setOccupied(newSlot.isOccupied());
+            add(oldSlot);
             return true;
         }
         return false;

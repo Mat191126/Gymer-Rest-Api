@@ -1,5 +1,6 @@
-package com.gymer.gymer_rest_api.entity;
+package com.gymer.gymer_rest_api.entity.implementation;
 
+import com.gymer.gymer_rest_api.entity.IdObtainable;
 import com.gymer.gymer_rest_api.entity.enumerated.CalendarType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,13 +14,13 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Calendar {
+public class Calendar implements IdObtainable<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Slot> slots;
 
     @NotNull
