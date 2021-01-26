@@ -2,7 +2,7 @@ package com.gymer.gymer_rest_api.service;
 
 import java.util.Optional;
 
-public interface ICrudService<T, V> {
+public interface CrudService<T, V> {
 
     Iterable<T> getAll();
 

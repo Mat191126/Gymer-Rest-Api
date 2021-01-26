@@ -2,14 +2,14 @@ package com.gymer.gymer_rest_api.service.implementation;
 
 import com.gymer.gymer_rest_api.entity.Account;
 import com.gymer.gymer_rest_api.repository.AccountRepository;
-import com.gymer.gymer_rest_api.service.ICrudService;
+import com.gymer.gymer_rest_api.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class AccountService implements ICrudService<Account, Integer> {
+public class AccountService implements CrudService<Account, Integer> {
 
     private final AccountRepository accountRepository;
 

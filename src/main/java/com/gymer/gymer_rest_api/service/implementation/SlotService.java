@@ -2,14 +2,14 @@ package com.gymer.gymer_rest_api.service.implementation;
 
 import com.gymer.gymer_rest_api.entity.Slot;
 import com.gymer.gymer_rest_api.repository.SlotRepository;
-import com.gymer.gymer_rest_api.service.ICrudService;
+import com.gymer.gymer_rest_api.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class SlotService implements ICrudService<Slot, Integer> {
+public class SlotService implements CrudService<Slot, Integer> {
 
     private final SlotRepository slotRepository;
 
@@ -40,7 +40,6 @@ public class SlotService implements ICrudService<Slot, Integer> {
         if (oldSlot.isPresent()) {
             Slot slot = oldSlot.get();
             slot.setAddress(object.getAddress());
-            slot.setCalendar(object.getCalendar());
             slot.setEndTime(object.getEndTime());
             slot.setStartTime(object.getStartTime());
             slot.setOccupied(object.isOccupied());

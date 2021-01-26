@@ -2,14 +2,14 @@ package com.gymer.gymer_rest_api.service.implementation;
 
 import com.gymer.gymer_rest_api.entity.Calendar;
 import com.gymer.gymer_rest_api.repository.CalendarRepository;
-import com.gymer.gymer_rest_api.service.ICrudService;
+import com.gymer.gymer_rest_api.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class CalendarService implements ICrudService<Calendar, Integer> {
+public class CalendarService implements CrudService<Calendar, Integer> {
 
     private final CalendarRepository calendarRepository;
 

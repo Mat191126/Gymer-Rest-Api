@@ -2,14 +2,14 @@ package com.gymer.gymer_rest_api.service.implementation;
 
 import com.gymer.gymer_rest_api.entity.Address;
 import com.gymer.gymer_rest_api.repository.AddressRepository;
-import com.gymer.gymer_rest_api.service.ICrudService;
+import com.gymer.gymer_rest_api.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class AddressService implements ICrudService<Address, Integer> {
+public class AddressService implements CrudService<Address, Integer> {
 
     private final AddressRepository addressRepository;
 
