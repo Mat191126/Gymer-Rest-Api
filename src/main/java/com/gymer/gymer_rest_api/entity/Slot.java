@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Time;
 
 @Data
@@ -23,6 +24,9 @@ public class Slot {
 
     @NotNull
     private Time endTime;
+
+    @NotNull
+    private Date date;
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
