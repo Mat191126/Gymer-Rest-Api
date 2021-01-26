@@ -35,7 +35,4 @@ public class Slot {
     @NotNull
     private boolean occupied;
 
-    @ManyToOne
-    private Calendar calendar;
-
 }
