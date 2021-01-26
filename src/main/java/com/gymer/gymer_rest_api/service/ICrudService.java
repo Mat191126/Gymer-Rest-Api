@@ -8,8 +8,8 @@ public interface ICrudService<T, V> {
 
     Optional<T> get(V id);
 
-    void add(T object);
+    boolean add(T object);
 
-    void update(T object);
+    boolean update(T object);
 
 }

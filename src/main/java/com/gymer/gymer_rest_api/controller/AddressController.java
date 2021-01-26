@@ -3,6 +3,8 @@ package com.gymer.gymer_rest_api.controller;
 import com.gymer.gymer_rest_api.entity.Address;
 import com.gymer.gymer_rest_api.service.implementation.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,24 +19,26 @@ public class AddressController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public Iterable<Address> getAll() {
         return addressService.getAll();
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Address getById(@PathVariable Integer id) {
         return addressService.get(id).orElse(null);
     }
 
     @PostMapping
-    public void addNewAddress(@RequestBody Address address) {
-        addressService.add(address);
+    public ResponseEntity<HttpStatus> addNewAddress(@RequestBody Address address) {
+        return addressService.add(address) ? new ResponseEntity<>(HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
     @PutMapping("/{id}")
-    public void updateAddress(@RequestBody Address address, @PathVariable Integer id) {
-        address.setId(id);
-        addressService.update(address);
+    public ResponseEntity<HttpStatus> updateAddress(@RequestBody Address address, @PathVariable Integer id) {
+        if (!address.getId().equals(id)) return new ResponseEntity<>(HttpStatus.CONFLICT);
+        return addressService.update(address) ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }

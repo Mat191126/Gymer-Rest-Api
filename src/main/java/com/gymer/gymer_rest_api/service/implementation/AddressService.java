@@ -29,12 +29,13 @@ public class AddressService implements ICrudService<Address, Integer> {
     }
 
     @Override
-    public void add(Address object) {
+    public boolean add(Address object) {
         addressRepository.save(object);
+        return addressRepository.existsById(object.getId());
     }
 
     @Override
-    public void update(Address object) {
+    public boolean update(Address object) {
         Optional<Address> oldAddress = get(object.getId());
         if (oldAddress.isPresent()) {
             Address address = oldAddress.get();
@@ -43,7 +44,9 @@ public class AddressService implements ICrudService<Address, Integer> {
             address.setLocalNumber(object.getLocalNumber());
             address.setZipCode(object.getZipCode());
             add(address);
+            return true;
         }
+        return false;
     }
 
 }

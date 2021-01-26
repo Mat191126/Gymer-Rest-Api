@@ -29,19 +29,22 @@ public class CalendarService implements ICrudService<Calendar, Integer> {
     }
 
     @Override
-    public void add(Calendar object) {
+    public boolean add(Calendar object) {
         calendarRepository.save(object);
+        return calendarRepository.existsById(object.getId());
     }
 
     @Override
-    public void update(Calendar object) {
+    public boolean update(Calendar object) {
         Optional<Calendar> oldCalendar = get(object.getId());
         if (oldCalendar.isPresent()) {
             Calendar calendar = oldCalendar.get();
             calendar.setSlots(object.getSlots());
             calendar.setCalendarType(object.getCalendarType());
             add(calendar);
+            return true;
         }
+        return false;
     }
 
 }

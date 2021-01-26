@@ -31,7 +31,7 @@ public class Slot {
     @NotNull
     private boolean occupied;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Calendar calendar;
 
 }

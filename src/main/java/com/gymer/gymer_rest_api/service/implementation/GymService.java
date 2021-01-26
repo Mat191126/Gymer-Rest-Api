@@ -29,12 +29,13 @@ public class GymService implements ICrudService<Gym, Integer> {
     }
 
     @Override
-    public void add(Gym object) {
+    public boolean add(Gym object) {
         gymRepository.save(object);
+        return gymRepository.existsById(object.getId());
     }
 
     @Override
-    public void update(Gym object) {
+    public boolean update(Gym object) {
         Optional<Gym> gymDetailsOptional = get(object.getId());
         if (gymDetailsOptional.isPresent()) {
             Gym gym = gymDetailsOptional.get();
@@ -46,7 +47,9 @@ public class GymService implements ICrudService<Gym, Integer> {
             gym.setCalendar(object.getCalendar());
             gym.setEmployees(object.getEmployees());
             add(gym);
+            return true;
         }
+        return false;
     }
 
 }

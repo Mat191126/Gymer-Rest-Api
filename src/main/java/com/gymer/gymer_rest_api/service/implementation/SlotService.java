@@ -29,12 +29,13 @@ public class SlotService implements ICrudService<Slot, Integer> {
     }
 
     @Override
-    public void add(Slot object) {
+    public boolean add(Slot object) {
         slotRepository.save(object);
+        return slotRepository.existsById(object.getId());
     }
 
     @Override
-    public void update(Slot object) {
+    public boolean update(Slot object) {
         Optional<Slot> oldSlot = get(object.getId());
         if (oldSlot.isPresent()) {
             Slot slot = oldSlot.get();
@@ -44,7 +45,9 @@ public class SlotService implements ICrudService<Slot, Integer> {
             slot.setStartTime(object.getStartTime());
             slot.setOccupied(object.isOccupied());
             add(slot);
+            return true;
         }
+        return false;
     }
 
 }

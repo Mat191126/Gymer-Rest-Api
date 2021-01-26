@@ -29,12 +29,13 @@ public class AccountService implements ICrudService<Account, Integer> {
     }
 
     @Override
-    public void add(Account object) {
+    public boolean add(Account object) {
         accountRepository.save(object);
+        return accountRepository.existsById(object.getId());
     }
 
     @Override
-    public void update(Account object) {
+    public boolean update(Account object) {
         Optional<Account> oldAccount = get(object.getId());
         if (oldAccount.isPresent()) {
             Account account = oldAccount.get();
@@ -49,7 +50,9 @@ public class AccountService implements ICrudService<Account, Integer> {
             account.setAccountType(object.getAccountType());
             account.setCalendar(object.getCalendar());
             add(account);
+            return true;
         }
+        return false;
     }
 
 }
