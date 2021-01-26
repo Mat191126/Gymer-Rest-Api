@@ -1,5 +1,6 @@
 package com.gymer.gymer_rest_api.entity.implementation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gymer.gymer_rest_api.entity.BaseEntityBehaviour;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -42,7 +43,7 @@ public class Gym implements BaseEntityBehaviour<Integer> {
     @OneToMany
     private List<Account> employees;
 
-    @NotNull
-    private boolean active;
+    @JsonIgnore
+    private boolean active = true;
 
 }

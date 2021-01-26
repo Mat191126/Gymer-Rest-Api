@@ -1,5 +1,6 @@
 package com.gymer.gymer_rest_api.entity.implementation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gymer.gymer_rest_api.entity.BaseEntityBehaviour;
 import com.gymer.gymer_rest_api.entity.enumerated.CalendarType;
 import com.sun.istack.NotNull;
@@ -27,7 +28,7 @@ public class Calendar implements BaseEntityBehaviour<Integer> {
     @Enumerated(EnumType.STRING)
     private CalendarType calendarType;
 
-    @NotNull
-    private boolean active;
+    @JsonIgnore
+    private boolean active = true;
 
 }
