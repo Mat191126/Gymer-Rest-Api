@@ -29,4 +29,16 @@ public class SlotService extends CrudService<Slot, Integer> {
         return false;
     }
 
+    @Override
+    public final boolean delete(Integer id) {
+        Optional<Slot> object = get(id);
+        if (object.isPresent()) {
+            Slot oldObject = object.get();
+            oldObject.setActive(false);
+            repository.save(oldObject);
+            return true;
+        }
+        return false;
+    }
+
 }

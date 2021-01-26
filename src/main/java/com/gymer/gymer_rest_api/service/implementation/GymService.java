@@ -10,8 +10,13 @@ import java.util.Optional;
 @Service
 public class GymService extends CrudService<Gym, Integer> {
 
-    public GymService(CrudRepository<Gym, Integer> repository) {
+    private final CalendarService calendarService;
+    private final AddressService addressService;
+
+    public GymService(CrudRepository<Gym, Integer> repository, CalendarService calendarService, AddressService addressService) {
         super(repository);
+        this.calendarService = calendarService;
+        this.addressService = addressService;
     }
 
     @Override
@@ -27,6 +32,21 @@ public class GymService extends CrudService<Gym, Integer> {
             oldGym.setCalendar(newGym.getCalendar());
             oldGym.setEmployees(newGym.getEmployees());
             add(oldGym);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean delete(Integer id) {
+        Optional<Gym> object = get(id);
+        if (object.isPresent()) {
+            Gym oldObject = object.get();
+            oldObject.setActive(false);
+            oldObject.setEmployees(null);
+            addressService.delete(oldObject.getAddress().getId());
+            calendarService.delete(oldObject.getCalendar().getId());
+            repository.save(oldObject);
             return true;
         }
         return false;

@@ -1,5 +1,6 @@
 package com.gymer.gymer_rest_api.service.implementation;
 
+import com.gymer.gymer_rest_api.entity.implementation.Account;
 import com.gymer.gymer_rest_api.entity.implementation.Address;
 import com.gymer.gymer_rest_api.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,18 @@ public class AddressService extends CrudService<Address, Integer> {
             oldAddress.setLocalNumber(newAddress.getLocalNumber());
             oldAddress.setZipCode(newAddress.getZipCode());
             add(oldAddress);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean delete(Integer id) {
+        Optional<Address> object = get(id);
+        if (object.isPresent()) {
+            Address oldObject = object.get();
+            oldObject.setActive(false);
+            repository.save(oldObject);
             return true;
         }
         return false;
