@@ -12,4 +12,5 @@ public interface CrudBehaviour<T, K> {
 
     boolean update(T object);
 
+    boolean delete(K id);
 }

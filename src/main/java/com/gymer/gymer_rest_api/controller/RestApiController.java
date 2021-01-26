@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
+
 public abstract class RestApiController<T, K> {
 
     private final CrudBehaviour<T, K> service;
@@ -30,7 +32,7 @@ public abstract class RestApiController<T, K> {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    protected final T addNewAccount(@RequestBody T object) {
+    protected final T addNewObject(@RequestBody T object) {
         if (service.add(object)) {
             return object;
         }
@@ -39,13 +41,21 @@ public abstract class RestApiController<T, K> {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    protected final void updateAccount(@RequestBody T object, @PathVariable K id) {
+    protected final void updateObject(@RequestBody T object, @PathVariable K id) {
         BaseEntityBehaviour<K> baseEntityBehaviour = (BaseEntityBehaviour<K>) object;
         if (!baseEntityBehaviour.getId().equals(id)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
         if (!service.update(object)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    protected  final void deleteObject(@PathVariable K id) {
+        if (!service.delete(id)) {
+           throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
