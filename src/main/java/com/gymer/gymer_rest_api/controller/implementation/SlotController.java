@@ -1,7 +1,6 @@
 package com.gymer.gymer_rest_api.controller.implementation;
 
 import com.gymer.gymer_rest_api.controller.RestApiController;
-import com.gymer.gymer_rest_api.entity.Gym;
 import com.gymer.gymer_rest_api.entity.Slot;
 import com.gymer.gymer_rest_api.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
