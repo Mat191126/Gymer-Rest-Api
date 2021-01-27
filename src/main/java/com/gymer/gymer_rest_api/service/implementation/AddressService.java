@@ -32,4 +32,16 @@ public class AddressService extends CrudService<Address, Integer> {
         return false;
     }
 
+    @Override
+    public final boolean delete(Integer id) {
+        Optional<Address> object = get(id);
+        if (object.isPresent()) {
+            Address oldObject = object.get();
+            oldObject.setActive(false);
+            repository.save(oldObject);
+            return true;
+        }
+        return false;
+    }
+
 }

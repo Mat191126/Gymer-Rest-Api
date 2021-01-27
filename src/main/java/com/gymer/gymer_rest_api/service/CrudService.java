@@ -29,16 +29,4 @@ public abstract class CrudService<T, K> implements CrudBehaviour<T, K> {
         return repository.existsById(((BaseEntityBehaviour<K>) object).getId());
     }
 
-    @Override
-    public final boolean delete(K id) {
-        Optional<T> object = get(id);
-        if (object.isPresent()) {
-            T oldObject = object.get();
-            ((BaseEntityBehaviour<?>) oldObject).setActive(false);
-            repository.save(oldObject);
-            return true;
-        }
-        return false;
-    }
-
 }
