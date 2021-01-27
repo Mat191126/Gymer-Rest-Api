@@ -40,7 +40,7 @@ public class Gym implements BaseEntityBehaviour<Integer> {
     @OneToOne(cascade = CascadeType.ALL)
     private Calendar calendar;
 
-    @OneToMany
+    @ManyToMany
     private List<Account> employees;
 
     @JsonIgnore
