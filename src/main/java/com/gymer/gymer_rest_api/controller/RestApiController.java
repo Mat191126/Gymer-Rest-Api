@@ -2,11 +2,15 @@ package com.gymer.gymer_rest_api.controller;
 
 import com.gymer.gymer_rest_api.entity.IdObtainable;
 import com.gymer.gymer_rest_api.service.CrudBehaviour;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 public abstract class RestApiController<T, K> {
+
+    protected static final Logger log = LogManager.getLogger();
 
     private final CrudBehaviour<T, K> service;
 
@@ -17,6 +21,7 @@ public abstract class RestApiController<T, K> {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     protected final Iterable<T> getAll() {
+        log.debug(HttpStatus.OK);
         return service.getAll();
     }
 
