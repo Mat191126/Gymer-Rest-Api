@@ -1,8 +1,9 @@
 package com.gymer.gymer_rest_api.service.implementation;
 
 import com.gymer.gymer_rest_api.entity.implementation.Slot;
+import com.gymer.gymer_rest_api.repository.CrudRepositoryBehaviour;
 import com.gymer.gymer_rest_api.service.CrudService;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
 @Service
 public class SlotService extends CrudService<Slot, Integer> {
 
-    public SlotService(CrudRepository<Slot, Integer> repository) {
+    public SlotService(@Qualifier("slotRepository") CrudRepositoryBehaviour<Slot, Integer> repository) {
         super(repository);
     }
 

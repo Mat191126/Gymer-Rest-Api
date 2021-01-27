@@ -6,8 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
-
 public abstract class RestApiController<T, K> {
 
     private final CrudBehaviour<T, K> service;
@@ -53,9 +51,9 @@ public abstract class RestApiController<T, K> {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    protected  final void deleteObject(@PathVariable K id) {
+    protected final void deleteObject(@PathVariable K id) {
         if (!service.delete(id)) {
-           throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 

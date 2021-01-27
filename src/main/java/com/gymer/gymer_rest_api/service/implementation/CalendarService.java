@@ -1,10 +1,10 @@
 package com.gymer.gymer_rest_api.service.implementation;
 
-import com.gymer.gymer_rest_api.entity.implementation.Address;
 import com.gymer.gymer_rest_api.entity.implementation.Calendar;
+import com.gymer.gymer_rest_api.repository.CrudRepositoryBehaviour;
 import com.gymer.gymer_rest_api.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,7 +13,7 @@ import java.util.Optional;
 public class CalendarService extends CrudService<Calendar, Integer> {
 
     @Autowired
-    public CalendarService(CrudRepository<Calendar, Integer> repository) {
+    public CalendarService(@Qualifier("calendarRepository") CrudRepositoryBehaviour<Calendar, Integer> repository) {
         super(repository);
     }
 
