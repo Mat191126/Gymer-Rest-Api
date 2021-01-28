@@ -1,6 +1,7 @@
 package com.gymer.gymer_rest_api.entity.implementation;
 
-import com.gymer.gymer_rest_api.entity.IdObtainable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gymer.gymer_rest_api.entity.BaseEntityBehaviour;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Gym implements IdObtainable<Integer> {
+public class Gym implements BaseEntityBehaviour<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +40,11 @@ public class Gym implements IdObtainable<Integer> {
     @OneToOne(cascade = CascadeType.ALL)
     private Calendar calendar;
 
-    @OneToMany
+    @ManyToMany
     private List<Account> employees;
+
+    @JsonIgnore
+    @Column(columnDefinition = "boolean default true")
+    private boolean active = true;
 
 }

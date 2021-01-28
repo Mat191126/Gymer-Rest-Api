@@ -1,20 +1,18 @@
 package com.gymer.gymer_rest_api.entity.implementation;
 
-import com.gymer.gymer_rest_api.entity.IdObtainable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gymer.gymer_rest_api.entity.BaseEntityBehaviour;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address implements IdObtainable<Integer> {
+public class Address implements BaseEntityBehaviour<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +22,9 @@ public class Address implements IdObtainable<Integer> {
     private String street;
     private String localNumber;
     private String zipCode;
+
+    @JsonIgnore
+    @Column(columnDefinition = "boolean default true")
+    private boolean active = true;
 
 }

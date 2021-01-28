@@ -1,6 +1,7 @@
 package com.gymer.gymer_rest_api.entity.implementation;
 
-import com.gymer.gymer_rest_api.entity.IdObtainable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gymer.gymer_rest_api.entity.BaseEntityBehaviour;
 import com.gymer.gymer_rest_api.entity.enumerated.AccountType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account implements IdObtainable<Integer> {
+public class Account implements BaseEntityBehaviour<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,5 +44,9 @@ public class Account implements IdObtainable<Integer> {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private Calendar calendar;
+
+    @JsonIgnore
+    @Column(columnDefinition = "boolean default true")
+    private boolean active = true;
 
 }
