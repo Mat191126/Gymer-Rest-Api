@@ -17,7 +17,6 @@ public abstract class RestApiController<T, K> {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     protected final Iterable<T> getAll() {
-
         return service.getAll();
     }
 
