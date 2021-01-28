@@ -14,14 +14,6 @@ public class MailLogger {
 
     private static final Properties properties = new Properties();
     private static final File file = new File("src/main/resources/application.properties");
-    private static MailLogger instance = null;
-
-    public static MailLogger getInstance() {
-        if (instance == null) {
-            instance = new MailLogger();
-        }
-        return instance;
-    }
 
     public void sendEmail(String userEmail, String mailSubject, String mailBody) throws MessagingException, IOException {
         properties.load(new FileInputStream(file));
