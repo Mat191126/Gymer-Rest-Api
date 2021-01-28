@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-public abstract class RestApiController<T, K> {
+public abstract class RestApiController<T extends BaseEntityBehaviour<K>, K> {
 
     private final CrudBehaviour<T, K> service;
 
@@ -40,8 +40,7 @@ public abstract class RestApiController<T, K> {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     protected final void updateObject(@RequestBody T object, @PathVariable K id) {
-        BaseEntityBehaviour<K> baseEntityBehaviour = (BaseEntityBehaviour<K>) object;
-        if (!baseEntityBehaviour.getId().equals(id)) {
+        if (!object.getId().equals(id)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
         if (!service.update(object)) {

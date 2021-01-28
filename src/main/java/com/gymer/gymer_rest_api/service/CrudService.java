@@ -5,7 +5,7 @@ import com.gymer.gymer_rest_api.repository.CrudRepositoryBehaviour;
 
 import java.util.Optional;
 
-public abstract class CrudService<T, K> implements CrudBehaviour<T, K> {
+public abstract class CrudService<T extends BaseEntityBehaviour<K>, K> implements CrudBehaviour<T, K> {
 
     protected final CrudRepositoryBehaviour<T, K> repository;
 
@@ -26,7 +26,7 @@ public abstract class CrudService<T, K> implements CrudBehaviour<T, K> {
     @Override
     public final boolean add(T object) {
         repository.save(object);
-        return repository.existsById(((BaseEntityBehaviour<K>) object).getId());
+        return repository.existsById(object.getId());
     }
 
 }
