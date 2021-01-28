@@ -24,9 +24,9 @@ public class LoggerRequestInterceptor implements HandlerInterceptor {
         String message = String.format("METHOD: %s, URL: %s, STATUS: %s",
                 request.getMethod(), request.getRequestURI(), response.getStatus());
         log.info(message);
-		if (!(response.getStatus() == 200)) {
-			mailLogger.sendEmail("mati024211@gmail.com", "Log message", message);
-		}
+	if (!(response.getStatus() == 200)) {
+		mailLogger.sendEmail("mati024211@gmail.com", "Log message", message);
+	}
     }
 
 }
