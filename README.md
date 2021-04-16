@@ -55,7 +55,7 @@ Additionally, we implemented mechanism to send log errors to email if they occur
 4. Create your own Postgres database, populate it with **sample_data.sql** file in sql_data directory and paste 
    needed information to application.properties. 
    <br/>Enter e-mail address and password (in application.properties) of mail that you want to use to send the logs. To see logs you need to
-   modify LoggerRequestInterceptor.class. In 28 line change the mail **test8.t8.test8@gmail.com** to your own 
+   modify LoggerRequestInterceptor.class. In 28th line change the mail **test8.t8.test8@gmail.com** to your own 
    mail address as you don't have access to default one. If it's not working - if you're not using 2-step verification, you may need 
    to allow less secure apps to access your account.
 5. Run main() method in GymerRestApiApplication.class
