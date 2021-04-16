@@ -5,13 +5,13 @@
 **Gymer Rest API is an API for gym website that include standard CRUD operations. When a client makes a request to an
 HTTP server (and the server successfully receives the request) API notify the client if the request was 
 successfully handled or not.
-Additionally, we implemented logging errors to email if they occurs during the API runs.**
+Additionally, we implemented mechanism to send log errors to email if they occur during the API request.**
 
 ## Gymer in action
 ***
 *(Examples with use of account entity)*
 * ### Example GET methods
-  After we enter example **http://localhost:8080/api/accounts** url and click 'Send' we receive the response with
+  After we enter example **http://localhost:8080/api/accounts** URL and click 'Send' we receive the response with
   200 OK status code
   <br/>![screenshot1](src/main/resources/img/accountsGetOkScreenshot.png)
   <br/>We can specify which account we want to receive adding its id
@@ -22,19 +22,19 @@ Additionally, we implemented logging errors to email if they occurs during the A
   <br/>![screenshot4](src/main/resources/img/accountNotFoundMailScreenshot.png)
   
 * ### Example POST method
-  After we enter example **http://localhost:8080/api/accounts** url, put JSON file in request body, and click 'Send'
+  After we enter example **http://localhost:8080/api/accounts** URL, put JSON file in request body, and click 'Send'
   we receive the response with 201 CREATED status code and newly created record
   <br/>![screenshot5](src/main/resources/img/accountPostCreatedScreenshot.png)
   
 * ### Example PUT method
-  After we enter example **http://localhost:8080/api/accounts/31** url, put JSON file in request body, and click 'Send'
+  After we enter example **http://localhost:8080/api/accounts/31** URL, put JSON file in request body, and click 'Send'
   we receive the response with 204 NO_CONTENT status code
   <br/>![screenshot6](src/main/resources/img/accountPutScreenshot.png)
-  <br/>If we enter wrong id - we receive 409 CONFLICT status code (and log to e-mail)
+  <br/>If we enter wrong id - we receive 409 CONFLICT status code (and log on e-mail)
   <br/>![screenshot7](src/main/resources/img/accountPutConflictScreenshot.png)
   
 * ### Example DELETE method
-  After we enter example **http://localhost:8080/api/accounts/29** url and click 'Send'
+  After we enter example **http://localhost:8080/api/accounts/29** URL and click 'Send'
   we receive the response with 200 OK status code
   <br/>![screenshot8](src/main/resources/img/accountDeleteScreenshot.png)
 ## Used technologies and tools
@@ -61,7 +61,7 @@ Additionally, we implemented logging errors to email if they occurs during the A
 5. Run main() method in GymerRestApiApplication.class
 6. Open Postman and test endpoints
 7. Fast test:
-* Choose GET method and paste **http://localhost:8080/api/accounts** url
+* Choose GET method and paste **http://localhost:8080/api/accounts** URL
 * Click 'Send' button, and you should see the response as JSON with list of accounts
 
 #### Project will no longer be continued as it's only for educational purposes.
