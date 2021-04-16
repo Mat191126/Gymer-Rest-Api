@@ -5,7 +5,7 @@
 **Gymer Rest API is an API for gym website that include standard CRUD operations. When a client makes a request to an
 HTTP server (and the server successfully receives the request) API notify the client if the request was 
 successfully handled or not.
-Additionally, we implemented logging errors that occurs during the API runs to email.**
+Additionally, we implemented logging errors to email if they occurs during the API runs.**
 
 ## Gymer in action
 ***
